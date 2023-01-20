@@ -30,10 +30,10 @@ public class XLSXReaderExample
                     switch (cell.getCellType())
                     {
                         case Cell.CELL_TYPE_STRING:    //поле, представляющее строковый тип ячейки
-                            System.out.print(cell.getStringCellValue() + "\t\t");
+                            System.out.print(cell.getStringCellValue() + "\t\t\t");
                             break;
                         case Cell.CELL_TYPE_NUMERIC:    //поле, представляющее числовой тип ячейки
-                            System.out.print(cell.getNumericCellValue() + "\t\t");
+                            System.out.print(cell.getNumericCellValue() + "\t\t\t");
                             break;
                         default:
                     }
