@@ -1,4 +1,4 @@
-//package com.bezcoder.spring.files.upload;
+package com.bezcoder.spring.files.upload;
 
 import javax.annotation.Resource;
 
