@@ -3,6 +3,7 @@ package com.bezcoder.spring.files.upload.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.bezcoder.spring.files.upload.XLSXReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -29,6 +30,9 @@ public class FilesController {
     @Autowired
     FilesStorageService storageService;
 
+    @Autowired
+    XLSXReader xlsxReader;
+
     @PostMapping("/upload")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
         String message = "";
@@ -36,7 +40,10 @@ public class FilesController {
             storageService.save(file);
 
             message = "Uploaded the file successfully: " + file.getOriginalFilename();
+            // Пробую сразу после успешного скачивания, сделать парсинг файла и вывод в консоль
+            xlsxReader.ParserDocs();
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+
         } catch (Exception e) {
             message = "Could not upload the file: " + file.getOriginalFilename() + ". Error: " + e.getMessage();
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
@@ -49,7 +56,6 @@ public class FilesController {
             String filename = path.getFileName().toString();
             String url = MvcUriComponentsBuilder
                     .fromMethodName(FilesController.class, "getFile", path.getFileName().toString()).build().toString();
-
             return new FileInfo(filename, url);
         }).collect(Collectors.toList());
 
