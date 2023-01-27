@@ -40,8 +40,8 @@ public class FilesController {
             storageService.save(file);
 
             message = "Uploaded the file successfully: " + file.getOriginalFilename();
-            // Пробую сразу после успешного скачивания, сделать парсинг файла и вывод в консоль
-            xlsxReader.ParserDocs();
+
+            XLSXReader.ParserDocs();
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
 
         } catch (Exception e) {
