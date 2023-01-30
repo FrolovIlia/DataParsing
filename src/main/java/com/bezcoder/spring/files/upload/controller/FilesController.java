@@ -41,7 +41,9 @@ public class FilesController {
 
             message = "Uploaded the file successfully: " + file.getOriginalFilename();
 
-            XLSXReader.ParserDocs();
+            XLSXReader.ParserDocs(); // Здесь запускается парсер с выводом данных в консоль +
+                                    // нужно каждую строчку сохранять с БД
+
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
 
         } catch (Exception e) {
