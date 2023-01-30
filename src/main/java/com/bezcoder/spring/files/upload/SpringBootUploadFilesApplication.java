@@ -42,7 +42,7 @@ public class SpringBootUploadFilesApplication implements CommandLineRunner {
         return fileRepository.findAll();
     }
 
-    public Optional<FileInfo> findByUsername(String name) {
-        return fileRepository.findFileByFileName(name);
+    public Optional<FileInfo> findByName(String name) {
+        return fileRepository.findFileByName(name);
     }
 }

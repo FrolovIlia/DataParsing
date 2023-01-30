@@ -1,5 +1,8 @@
 package com.bezcoder.spring.files.upload.model;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+@EntityScan
 public class FileInfo {
     private String name;
     private String url;
